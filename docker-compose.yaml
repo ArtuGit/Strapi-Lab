@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+
+  postgres:
+    container_name: sl-postgres
+    image: postgres
+    ports:
+      - "6232:5432"
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d sl"]
+      interval: 5s
+      timeout: 15s
+      start_period: 10s
+      retries: 10
+    environment:
+      - POSTGRES_DB=sl
+      - POSTGRES_PASSWORD=postgres
+
+
