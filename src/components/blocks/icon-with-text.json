@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_blocks_icon_with_texts",
+  "info": {
+    "displayName": "Icon with text"
+  },
+  "options": {},
+  "attributes": {
+    "Text": {
+      "type": "text"
+    },
+    "Icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

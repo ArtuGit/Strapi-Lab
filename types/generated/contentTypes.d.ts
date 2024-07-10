@@ -825,6 +825,7 @@ export interface ApiHomeHome extends Schema.SingleType {
     singularName: 'home';
     pluralName: 'homes';
     displayName: 'Home';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -835,6 +836,13 @@ export interface ApiHomeHome extends Schema.SingleType {
     RTB: Attribute.Blocks;
     Markdown: Attribute.RichText;
     JSON: Attribute.JSON;
+    component_icons: Attribute.Component<'blocks.icon-with-text', true> &
+      Attribute.SetMinMax<
+        {
+          max: 3;
+        },
+        number
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
