@@ -858,9 +858,9 @@ export interface ApiDoctorDoctor extends Schema.CollectionType {
       'oneToMany',
       'api::language.language'
     >;
-    Locations: Attribute.Relation<
+    locations: Attribute.Relation<
       'api::doctor.doctor',
-      'oneToMany',
+      'manyToMany',
       'api::location.location'
     >;
     Gender: Attribute.Enumeration<['Male', 'Female']> &
@@ -1002,6 +1002,11 @@ export interface ApiLocationLocation extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    doctors: Attribute.Relation<
+      'api::location.location',
+      'manyToMany',
+      'api::doctor.doctor'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

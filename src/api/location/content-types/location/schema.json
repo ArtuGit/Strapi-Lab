@@ -23,6 +23,12 @@
         }
       },
       "type": "string"
+    },
+    "doctors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::doctor.doctor",
+      "mappedBy": "locations"
     }
   }
 }
