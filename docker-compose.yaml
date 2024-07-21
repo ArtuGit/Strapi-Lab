@@ -2,6 +2,44 @@ version: "3.8"
 
 services:
 
+  sl-api:
+    container_name: sl-api
+    build:
+      context: ./backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend/config:/opt/app/config
+      - ./backend/src:/opt/app/src
+      - ./backend/package.json:/opt/package.json
+      - ./backend/yarn.lock:/opt/yarn.lock
+      - ./backend/.env:/opt/app/.env
+      - ./backend/public/uploads:/opt/app/public/uploads
+    environment:
+      - HOST=0.0.0.0
+      - PORT=1337
+      - APP_KEYS=ysjfmVedKY+lTmClEyZnZA==,9mso9yBsV2CxXtZrHsfR9A==,WZsHRETBsKMeP/BZRyRYlg==,uzcPuLcSMj1z27XXDpnZ4Q==
+      - API_TOKEN_SALT=ADfdCIWTW20I38dZ3WekFw==
+      - ADMIN_JWT_SECRET=ZCKsPBuFr/3ZLWqdIGNadw==
+      - TRANSFER_TOKEN_SALT=/jMQBWWMGSRC9IQMI26LJg==
+      # Database
+      - DATABASE_CLIENT=postgres
+      - DATABASE_HOST=localhost
+      - DATABASE_PORT=6232
+      - DATABASE_NAME=sl
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+      - DATABASE_SSL=false
+      - JWT_SECRET=/GBlUdfAEMYiXU8ZFU3GAw==
+      # Email
+      - SMTP_HOST=localhost
+      - SMTP_PORT=1035
+      - SMTP_USERNAME=your_username
+      - SMTP_PASSWORD=your_password
+    ports:
+      - '1337:1337'
+
   postgres:
     container_name: sl-postgres
     image: postgres
