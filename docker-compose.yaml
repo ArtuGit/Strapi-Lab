@@ -9,6 +9,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      - strapi-lab-net
     volumes:
       - ./backend/config:/opt/app/config
       - ./backend/src:/opt/app/src
@@ -25,8 +27,8 @@ services:
       - TRANSFER_TOKEN_SALT=/jMQBWWMGSRC9IQMI26LJg==
       # Database
       - DATABASE_CLIENT=postgres
-      - DATABASE_HOST=localhost
-      - DATABASE_PORT=6232
+      - DATABASE_HOST=sl-postgres
+      - DATABASE_PORT=5432
       - DATABASE_NAME=sl
       - DATABASE_USERNAME=postgres
       - DATABASE_PASSWORD=postgres
@@ -46,6 +48,8 @@ services:
     env_file: backend/.env
     ports:
       - "6232:5432"
+    networks:
+      - strapi-lab-net
     volumes:
       - ./volumes/postgres:/var/lib/postgresql/data
     healthcheck:
@@ -66,3 +70,7 @@ services:
       - "8035:8025"
       - "1035:1025"
 
+networks:
+  strapi-lab-net:
+    name: Strapi Lab Net
+    driver: bridge
