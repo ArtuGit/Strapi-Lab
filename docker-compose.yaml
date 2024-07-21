@@ -5,6 +5,7 @@ services:
   postgres:
     container_name: sl-postgres
     image: postgres
+    env_file: backend/.env
     ports:
       - "6232:5432"
     volumes:
@@ -16,8 +17,8 @@ services:
       start_period: 10s
       retries: 10
     environment:
-      - POSTGRES_DB=sl
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
 
   mailhog:
     image: mailhog/mailhog
