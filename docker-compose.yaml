@@ -2,8 +2,8 @@ version: "3.8"
 
 services:
 
-  sl-api:
-    container_name: sl-api
+  sl-backend:
+    container_name: sl-backend
     build:
       context: ./backend
     depends_on:
