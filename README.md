@@ -7,7 +7,7 @@
 ### Start in Docker
 `docker compose up`
 
-### Start locally
+### Start locally (local Node.js required)
 Checked on Node v20.12.2
 
 `docker compose up postgres`
