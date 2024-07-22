@@ -11,7 +11,8 @@
 Checked on Node v20.12.2
 
 `docker compose up postgres`
-```cd backend
+```bash
+   cd backend
    yarn install
    yarn develop     
 ```
