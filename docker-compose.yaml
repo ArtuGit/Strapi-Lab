@@ -9,8 +9,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-#    networks:
-#      - strapi-lab-net
+    networks:
+      - strapi-lab-net
     volumes:
       - ./backend/config:/opt/app/config
       - ./backend/src:/opt/app/src
@@ -45,13 +45,11 @@ services:
   postgres:
     container_name: sl-postgres
     image: postgres
-    #env_file: backend/.env
     ports:
       - "6232:5432"
-#    networks:
-#      - strapi-lab-net
+    networks:
+      - strapi-lab-net
     volumes:
-#      - ./backend/data/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
       - ./volumes/postgres:/var/lib/postgresql/data
       - ./backend/data/init-seed.sql:/docker-entrypoint-initdb.d/init-seed.sql
     healthcheck:
@@ -64,15 +62,7 @@ services:
       - POSTGRES_DB=sl
       - POSTGRES_PASSWORD=postgres
 
-  mailhog:
-    image: mailhog/mailhog
-    container_name: "sl-mailhog"
-    restart: always
-    ports:
-      - "8035:8025"
-      - "1035:1025"
-
-#networks:
-#  strapi-lab-net:
-#    name: Strapi Lab Net
-#    driver: bridge
+networks:
+  strapi-lab-net:
+    name: Strapi Lab Net
+    driver: bridge
