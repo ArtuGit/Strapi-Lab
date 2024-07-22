@@ -1,4 +1,4 @@
-# 🚀 Strapi Lab: Doctor Catalog
+# 🚀 Strapi Lab: Doctors Catalog
 
 ## Backend
 
