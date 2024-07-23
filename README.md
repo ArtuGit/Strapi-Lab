@@ -4,10 +4,12 @@
 
 `cp ./backend/.env.example ./backend/.env`
 
-### Run in Docker
+### Quick Start
+
+#### Run in Docker
 `docker compose up`
 
-### Run on local Node.js
+#### Run on local Node.js
 Checked on Node v20.12.2
 
 `docker compose up postgres`
