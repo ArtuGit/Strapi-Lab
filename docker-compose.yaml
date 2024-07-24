@@ -13,6 +13,7 @@ services:
       - strapi-lab-net
     volumes:
       - ./backend/config:/opt/app/config
+      - ./backend/data:/opt/app/data
       - ./backend/src:/opt/app/src
       - ./backend/package.json:/opt/package.json
       - ./backend/yarn.lock:/opt/yarn.lock
