@@ -1,0 +1,1 @@
+A kit of files to  start a Strapi project with Docker and Docker Compose
