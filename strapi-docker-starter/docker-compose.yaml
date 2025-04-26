@@ -20,7 +20,7 @@ services:
     ports:
       - "1337:1337"
     networks:
-      - strapi-lab-net
+      - strapi-starter-net
     depends_on:
       - postgres
       - mailhog
@@ -28,25 +28,23 @@ services:
   postgres:
     container_name: strapi-starter-postgres
     image: postgres
-    env_file:
-      - backend/.env.docker.local
     ports:
       - "6232:5432"
     networks:
-      - strapi-lab-net
+      - strapi-starter-net
     volumes:
       - ./volumes/postgres:/var/lib/postgresql/data
-      - ./backend/data/init-seed.sql:/docker-entrypoint-initdb.d/init-seed.sql
+#      - ./backend/init/db-seed.sql:/docker-entrypoint-initdb.d/db-seed.sql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d sl"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d strapi-starter"]
       interval: 5s
       timeout: 15s
       start_period: 10s
       retries: 10
     environment:
-      POSTGRES_USER: ${DATABASE_USERNAME}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: strapi-starter
 
   mailhog:
     image: mailhog/mailhog
@@ -56,9 +54,9 @@ services:
       - "8025:8025"
       - "1025:1025"
     networks:
-      - strapi-lab-net
+      - strapi-starter-net
 
 networks:
-  strapi-lab-net:
-    name: Strapi Lab Net
+  strapi-starter-net:
+    name: Strapi Starter Net
     driver: bridge
