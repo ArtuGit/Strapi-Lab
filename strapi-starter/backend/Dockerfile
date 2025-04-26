@@ -14,7 +14,7 @@ RUN yarn global add node-gyp && \
     yarn install --frozen-lockfile
 
 # Copy source code
-COPY .. .
+COPY ../.. .
 
 # Build the application
 ENV NODE_OPTIONS="--max-old-space-size=8192"

@@ -5,8 +5,8 @@ services:
   backend:
     container_name: strapi-starter-backend
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: backend
+      dockerfile: backend/Dockerfile
     restart: unless-stopped
     env_file:
       - backend/.env
