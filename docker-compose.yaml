@@ -3,7 +3,7 @@ version: "3.8"
 services:
 
   backend:
-    container_name: sl-backend
+    container_name: strapi-starter-backend
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -26,8 +26,10 @@ services:
       - mailhog
 
   postgres:
-    container_name: sl-postgres
+    container_name: strapi-starter-postgres
     image: postgres
+    env_file:
+      - backend/.env.docker.local
     ports:
       - "6232:5432"
     networks:
@@ -42,12 +44,14 @@ services:
       start_period: 10s
       retries: 10
     environment:
-      - POSTGRES_DB=sl
-      - POSTGRES_PASSWORD=postgres
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
 
   mailhog:
     image: mailhog/mailhog
-    container_name: mailhog
+    container_name: strapi-starter-mailhog
+    restart: unless-stopped
     ports:
       - "8025:8025"
       - "1025:1025"
